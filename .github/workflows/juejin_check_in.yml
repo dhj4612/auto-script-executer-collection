@@ -1,0 +1,27 @@
+name: 掘金签到自动执行任务
+on:
+  schedule:
+    # 分 时 日 月 星期
+    - cron: '0 23 * * *'   # UTC 23:00 → 北京 07:00（第二天）
+  workflow_dispatch:       # 保留手动触发按钮，方便调试
+jobs:
+  JueJinCheckIn:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v5
+
+      - name: 检查仓库文件
+        run: ls -al
+
+      - name: 设置node环境
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: node --version
+
+      - name: 安装依赖
+      - run: npm install
+
+      - name: 运行测试
+        run: node ./src/juejin_check_in.js
