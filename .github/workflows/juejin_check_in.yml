@@ -18,10 +18,11 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
+
       - run: node --version
 
       - name: 安装依赖
-      - run: npm install
+        run: npm install
 
       - name: 运行测试
         run: node ./src/juejin_check_in.js
