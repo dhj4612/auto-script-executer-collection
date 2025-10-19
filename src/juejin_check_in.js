@@ -1,1 +1,1 @@
-console.log('掘金签到执行...')
+console.log('掘金签到执行')
