@@ -1,2 +1,2 @@
-const Cookie = process.env.Cookie
+const Cookie = process.env.COOKIE
 console.log(Cookie.length)
