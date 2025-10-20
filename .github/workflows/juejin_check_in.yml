@@ -7,6 +7,8 @@ on:
 jobs:
   JueJinCheckIn:
     runs-on: ubuntu-latest
+    env:
+      COOKIE: ${{ secrets.COOKIE }}
     steps:
       - name: 拉取代码
         uses: actions/checkout@v5
@@ -17,7 +19,7 @@ jobs:
       - name: 设置node环境
         uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 22
 
       - run: node --version
 

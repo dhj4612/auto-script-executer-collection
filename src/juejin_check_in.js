@@ -1,1 +1,2 @@
-console.log('掘金签到执行')
+const Cookie = process.env.Cookie
+console.log(Cookie)
