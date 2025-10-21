@@ -36,10 +36,10 @@ jobs:
         with:
           chrome-version: 141.0.7390.78
 
-      - name: 检查ChromeDriver
+      - name: 检查ChromeDriver依赖
         run: /home/runner/work/auto-script-executer-collection/auto-script-executer-collection/node_modules/chromedriver/lib/chromedriver/chromedriver --version
 
-      - name: 检查Chrome
+      - name: 检查系统Chrome
         run: chrome --version
 
       - name: 执行脚本
