@@ -26,8 +26,21 @@ jobs:
       - name: 安装依赖
         run: npm install
 
-      - name: 检查驱动文件
+      - name: 卸载系统Chrome
+        run: |
+          sudo apt-get remove -y google-chrome-stable
+          sudo apt-get autoremove -y
+
+      - name: 设置系统Chrome
+        uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: 141.0.7390.78
+
+      - name: 检查ChromeDriver
         run: /home/runner/work/auto-script-executer-collection/auto-script-executer-collection/node_modules/chromedriver/lib/chromedriver/chromedriver --version
+
+      - name: 检查Chrome
+        run: chrome --version
 
       - name: 执行脚本
         run: node ./src/juejin_check_in.js
