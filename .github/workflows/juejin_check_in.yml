@@ -25,9 +25,7 @@ jobs:
         run: node --version
 
       - name: 卸载系统Chrome
-        run: |
-          sudo apt-get remove -y google-chrome-stable
-          sudo apt-get autoremove -y
+        run: sudo apt-get remove -y google-chrome-stable
 
       - name: 设置系统Chrome
         uses: browser-actions/setup-chrome@v2
