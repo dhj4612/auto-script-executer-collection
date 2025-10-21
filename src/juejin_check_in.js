@@ -8,7 +8,8 @@ const chromeDriver = require('chromedriver');
 
     let Cookie = process.env.COOKIE;
     if (!Cookie) {
-        Cookie = '_tea_utm_cache_2608=undefined; __tea_cookie_tokens_2608=%257B%2522web_id%2522%253A%25227511637374100145698%2522%252C%2522user_unique_id%2522%253A%25227511637374100145698%2522%252C%2522timestamp%2522%253A1748939383339%257D; is_staff_user=false; csrf_session_id=5a7c1d5d6f182563cea1b1e46429f8ce; passport_csrf_token=ba4433e168d69c555ff8451f6bb5ddcb; passport_csrf_token_default=ba4433e168d69c555ff8451f6bb5ddcb; n_mh=MUyAhH9BifY1AcAqDcVGiTyBFuPvIB1RNRHhsB4g2JA; passport_auth_status=7503b935313419b7d8fbb31655f68b73%2C; passport_auth_status_ss=7503b935313419b7d8fbb31655f68b73%2C; sid_guard=d9f68049b192b78c2f792a6dd4d6ecae%7C1760944023%7C31536000%7CTue%2C+20-Oct-2026+07%3A07%3A03+GMT; uid_tt=3be0f80b7536d84c8a5f67fbe084f860; uid_tt_ss=3be0f80b7536d84c8a5f67fbe084f860; sid_tt=d9f68049b192b78c2f792a6dd4d6ecae; sessionid=d9f68049b192b78c2f792a6dd4d6ecae; sessionid_ss=d9f68049b192b78c2f792a6dd4d6ecae; session_tlb_tag=sttt%7C1%7C2faASbGSt4wveSpt1Nbsrv________-jIxWHZO_pUgJDG4gniHfJm8E0v0gyUdfkaWBDbYtsoN0%3D; sid_ucp_v1=1.0.0-KGVkYWY3YmQ4YTE5NzUwNmRmNDk4NzRhYWMxZmNlMTMyZjkwODk1N2QKFwiXktDehIzjAxCXv9fHBhiwFDgCQPEHGgJobCIgZDlmNjgwNDliMTkyYjc4YzJmNzkyYTZkZDRkNmVjYWU; ssid_ucp_v1=1.0.0-KGVkYWY3YmQ4YTE5NzUwNmRmNDk4NzRhYWMxZmNlMTMyZjkwODk1N2QKFwiXktDehIzjAxCXv9fHBhiwFDgCQPEHGgJobCIgZDlmNjgwNDliMTkyYjc4YzJmNzkyYTZkZDRkNmVjYWU'
+        console.log('Cookie未配置')
+        return
     }
 
     const cookies = Cookie.split(';').map(item => {
@@ -69,9 +70,7 @@ const chromeDriver = require('chromedriver');
         await signBtn.click();
         console.log('完成签到');
 
-        while (true) {
-            await driver.sleep(3000)
-        }
+        await driver.sleep(1000)
     } catch (e) {
         console.error('签到执行异常=', e)
         throw new Error('签到执行失败')
