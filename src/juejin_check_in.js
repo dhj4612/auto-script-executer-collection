@@ -1,16 +1,10 @@
 const {Builder, By} = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome');
-const path = require('path');
+const chromeDriver = require('chromedriver');
 
 (async function start() {
     console.log(`开始执行签到 当前执行平台=${process.platform}`)
-
-    const base = path.join(__dirname, '../')
-    let driverPath = path.join(base, 'node_modules/chromedriver/lib/chromedriver/chromedriver');
-    if (process.platform === 'win32') {
-        driverPath += '.exe'
-    }
-    console.log('chrome驱动路径=', driverPath)
+    console.log('chrome驱动路径=', chromeDriver.path)
 
     let Cookie = process.env.COOKIE;
     if (!Cookie) {
@@ -38,11 +32,9 @@ const path = require('path');
             .addArguments('--disable-gpu-compositing')
             .addArguments('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36')
 
-        const chromeService = new chrome.ServiceBuilder(driverPath);
-
         driver = await new Builder()
             .forBrowser("chrome")
-            .setChromeService(chromeService)
+            .setChromeService(new chrome.ServiceBuilder(chromeDriver.path))
             .setChromeOptions(options)
             .build();
 
