@@ -21,7 +21,6 @@ const chromeDriver = require('chromedriver');
             path: '/'
         }
     })
-    console.log('cookies=', cookies)
 
     let driver;
     try {
