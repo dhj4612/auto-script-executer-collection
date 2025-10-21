@@ -73,7 +73,8 @@ const chromeDriver = require('chromedriver');
             await driver.sleep(3000)
         }
     } catch (e) {
-        console.log(e)
+        console.error('签到执行异常=', e)
+        throw new Error('签到执行失败')
     } finally {
         if (driver) {
             await driver.quit()
