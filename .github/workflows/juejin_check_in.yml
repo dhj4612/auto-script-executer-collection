@@ -21,10 +21,8 @@ jobs:
         with:
           node-version: 22
 
-      - run: node --version
-
-      - name: 安装依赖
-        run: npm install
+      - name: 检查node环境
+        run: node --version
 
       - name: 卸载系统Chrome
         run: |
@@ -35,6 +33,9 @@ jobs:
         uses: browser-actions/setup-chrome@v2
         with:
           chrome-version: 141.0.7390.78
+
+      - name: 安装依赖
+        run: npm install
 
       - name: 检查ChromeDriver依赖
         run: /home/runner/work/auto-script-executer-collection/auto-script-executer-collection/node_modules/chromedriver/lib/chromedriver/chromedriver --version
