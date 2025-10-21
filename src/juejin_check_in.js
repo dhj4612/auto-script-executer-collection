@@ -75,6 +75,8 @@ const chromeDriver = require('chromedriver');
     } catch (e) {
         console.log(e)
     } finally {
-        await driver.quit();
+        if (driver) {
+            await driver.quit()
+        }
     }
 }())
