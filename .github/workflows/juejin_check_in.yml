@@ -24,15 +24,12 @@ jobs:
       - name: 检查node环境
         run: node --version
 
-      - name: 卸载系统Chrome
-        run: sudo apt-get remove -y google-chrome-stable
-
-      - name: 设置系统Chrome
+      - name: 设置系统Chrome环境
         uses: browser-actions/setup-chrome@v2
         with:
           chrome-version: 141.0.7390.78
 
-      - name: 安装依赖
+      - name: 安装Node依赖
         run: npm install
 
       - name: 检查ChromeDriver依赖
