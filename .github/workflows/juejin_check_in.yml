@@ -24,6 +24,16 @@ jobs:
       - name: 检查node环境
         run: node --version
 
+      - name: 卸载系统自带Chrome
+        run: |
+          sudo apt-get remove -y --purge google-chrome-stable
+          # 跳过 man-db 和 libc-bin trigger，节省 30-90 s
+          sudo rm -f /var/lib/man-db/auto-update
+          sudo mkdir -p /usr/share/man/man{1..9}   # 防止 man 目录缺失报错
+          # 如果还有 libc-bin trigger，也可跳过
+          echo "libc-bin libraries/restart-without-asking boolean true" | sudo debconf-set-selections
+        timeout-minutes: 2
+
       - name: 设置系统Chrome环境
         uses: browser-actions/setup-chrome@v2
         with:
