@@ -26,11 +26,14 @@ jobs:
 
       - name: 快速卸载系统自带Chrome
         run: |
-          sudo apt-get remove -y --purge google-chrome-stable
-          sudo rm -f /var/lib/man-db/auto-update
+          # 提前跳过 man-db 和 libc-bin 的 trigger
           sudo mkdir -p /usr/share/man/man{1..9}
-          echo "libc-bin libraries/restart-without-asking boolean true" | sudo debconf-set-selections
-        timeout-minutes: 2
+          echo 'man-db man-db/auto-update boolean false' | sudo debconf-set-selections
+          echo 'libc-bin libraries/restart-without-asking boolean true' | sudo debconf-set-selections
+          # 真正卸载
+          sudo dpkg --configure -a   # 先把之前没配完的快速带过去
+          sudo apt-get remove -y --purge google-chrome-stable
+        timeout-minutes: 1
 
       - name: 设置系统Chrome环境
         uses: browser-actions/setup-chrome@v2

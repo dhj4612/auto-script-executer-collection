@@ -57,7 +57,7 @@ const chromeDriver = require('chromedriver');
         await driver.sleep(1500)
 
         // 查找签到或已签到按钮（class 同时包含 signin 和 btn）
-        const signedBtn = await driver.findElements(By.css('.signedin.btn'))
+        let signedBtn = await driver.findElements(By.css('.signedin.btn'))
         if (signedBtn.length > 0) {
             console.log('今日已签到...')
             return
@@ -67,9 +67,26 @@ const chromeDriver = require('chromedriver');
 
         // 完成签到
         await signBtn.click();
-        console.log('完成签到');
+        console.log('点击签到按钮，等待签到完成...');
 
-        await driver.sleep(1000)
+        await driver.sleep(3000)
+
+        console.log('检查签到情况...')
+        await driver.navigate().refresh();
+        signedBtn = await driver.findElements(By.css('.signedin.btn'))
+        if (signedBtn.length > 0) {
+            console.log('签到完成...')
+        } else {
+            console.log('再次尝试签到')
+            signBtn.click()
+            console.log('点击签到按钮，等待签到完成...');
+            await driver.sleep(3000)
+            signedBtn = await driver.findElements(By.css('.signedin.btn'))
+            if (!signedBtn.length) {
+                console.log('签到失败')
+            }
+        }
+
     } catch (e) {
         console.error('签到执行异常=', e)
         throw new Error('签到执行失败')
