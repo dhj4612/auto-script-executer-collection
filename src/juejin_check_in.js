@@ -48,13 +48,11 @@ const chromeDriver = require('chromedriver');
 
         await driver.get('https://juejin.cn/user/center/signin');
 
-        await driver.navigate().refresh();
+        console.log('等待页面加载完成')
+        await driver.sleep(3000)
 
         let title = await driver.getTitle();
         console.log('当前页面:', title)
-
-        // 等待页面状态刷新完成
-        await driver.sleep(1500)
 
         // 查找签到或已签到按钮（class 同时包含 signin 和 btn）
         let signedBtn = await driver.findElements(By.css('.signedin.btn'))
@@ -72,7 +70,6 @@ const chromeDriver = require('chromedriver');
         await driver.sleep(3000)
 
         console.log('检查签到情况...')
-        await driver.navigate().refresh();
         signedBtn = await driver.findElements(By.css('.signedin.btn'))
         if (signedBtn.length > 0) {
             console.log('签到完成...')
@@ -80,13 +77,12 @@ const chromeDriver = require('chromedriver');
             console.log('再次尝试签到')
             signBtn.click()
             console.log('点击签到按钮，等待签到完成...');
-            await driver.sleep(3000)
+            await driver.sleep(5000)
             signedBtn = await driver.findElements(By.css('.signedin.btn'))
             if (!signedBtn.length) {
                 console.log('签到失败')
             }
         }
-
     } catch (e) {
         console.error('签到执行异常=', e)
         throw new Error('签到执行失败')
