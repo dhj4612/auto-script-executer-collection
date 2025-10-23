@@ -2,7 +2,7 @@ name: 掘金签到自动执行任务
 on:
   schedule:
     # 分 时 日 月 星期
-    - cron: '0 23 * * *'   # UTC 23:00 → 北京 07:00（第二天）
+    - cron: '0 2 * * *'   # UTC 23:00 → 北京 07:00（第二天）
   workflow_dispatch:       # 保留手动触发按钮，方便调试
 jobs:
   JueJinCheckIn:
