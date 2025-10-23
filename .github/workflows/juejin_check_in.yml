@@ -30,8 +30,8 @@ jobs:
           sudo rm -f /var/lib/apt/lists/lock /var/cache/apt/archives/lock /var/lib/dpkg/lock*
           sudo mkdir -p /usr/share/man/man{1..9}
           sudo DEBIAN_FRONTEND=noninteractive apt-get remove -y --purge google-chrome-stable 2>/dev/null || true
-          timeout-minutes: 2
-          continue-on-error: true
+        timeout-minutes: 2
+        continue-on-error: true
 
       - name: 设置系统Chrome环境
         uses: browser-actions/setup-chrome@v2
