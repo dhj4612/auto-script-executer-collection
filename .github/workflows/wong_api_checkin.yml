@@ -5,10 +5,10 @@ on:
     - cron: '0 2 * * *'
   workflow_dispatch:
 jobs:
-  JueJinCheckIn:
+  WongApiCheckin:
     runs-on: ubuntu-latest
     env:
-      COOKIE: ${{ secrets.WONG_API_COOKIE }}
+      WONG_API_COOKIE: ${{ secrets.WONG_API_COOKIE }}
     steps:
       - name: 拉取代码
         uses: actions/checkout@v5
