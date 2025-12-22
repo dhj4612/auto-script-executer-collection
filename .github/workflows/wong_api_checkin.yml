@@ -1,8 +1,8 @@
 name: WONG_API签到自动执行任务
 on:
-  schedule:
-    # 分 时 日 月 星期
-    - cron: '0 2 * * *'
+#  schedule:
+#    # 分 时 日 月 星期
+#    - cron: '0 2 * * *'
   workflow_dispatch:
 jobs:
   WongApiCheckin:
