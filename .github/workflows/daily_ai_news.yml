@@ -1,0 +1,27 @@
+name: 每日AI资讯推送
+on:
+  schedule:
+    # 分 时 日 月 星期 — UTC 2:00 = 北京时间 10:00
+    - cron: '0 2 * * *'
+  workflow_dispatch:       # 手动触发调试
+jobs:
+  DailyAiNews:
+    runs-on: ubuntu-latest
+    env:
+      EMAIL_USER: ${{ secrets.EMAIL_USER }}
+      EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+      EMAIL_TO: ${{ secrets.EMAIL_TO }}
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v5
+
+      - name: 设置 Node 环境
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 执行脚本
+        run: node ./src/daily_ai_news.js
